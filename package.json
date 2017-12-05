@@ -22,5 +22,8 @@
     "querystring": "^0.2.0",
     "request": "^2.83.0",
     "spotify-web-api-node": "^2.5.0"
+  },
+  "engines": {
+    "node": "6.11.0"
   }
 }
