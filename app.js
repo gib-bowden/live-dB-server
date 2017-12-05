@@ -16,9 +16,10 @@ const PORT = process.env.PORT || 8888;
 const SpotifyWebApi = require('spotify-web-api-node');
 const spotifyApi = new SpotifyWebApi(); 
 
-var client_id = constants.CLIENT_ID; // Your client id
-var client_secret = constants.CLIENT_SECRET; // Your secret
-var redirect_uri = constants.REDIRECT_URI; // Your redirect uri
+var client_id = constants.CLIENT_ID; 
+var client_secret = constants.CLIENT_SECRET; 
+var redirect_uri = constants.REDIRECT_URI;
+
 
 const app = express();
 
@@ -162,6 +163,10 @@ app.get('/refresh_token', function(req, res) {
       });
     }
   });
+});
+
+app.get("/*", (rec, res) => {
+  res.status(400).send("hello");
 });
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
