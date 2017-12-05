@@ -165,7 +165,7 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-app.get("/*", (rec, res) => {
+app.get("*", (rec, res) => {
   res.status(400).send("hello");
 });
 
