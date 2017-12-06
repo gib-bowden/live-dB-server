@@ -61,7 +61,7 @@ var stateKey = 'spotify_auth_state';
       
       .then(function(data){
         //res.send(data);
-        debugger; 
+        console.log("Hello"); 
         res.send('IT WORKED');
       })
       .catch(function(err){
