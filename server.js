@@ -95,6 +95,7 @@ app.get('/redirecturi', (req, res) => {
 app.get('/userPlaylist', (req, res) => {
     spotifyApi.getMe()
     .then(function(data) {
+        console.log(data); 
       spotifyApi.getUserPlaylists(data.body.id)
       .then(function(data) {
         res.json(data.body.items);
