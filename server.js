@@ -84,10 +84,10 @@ app.get('/redirecturi', (req, res) => {
         else {
             spotifyApi.setAccessToken(body['access_token']);
             spotifyApi.setRefreshToken(body['refresh_token']);
-            res.status(200).send(body['access_token']);
-            // spotifyApi.getMet().then((data) => {
-            //     res.status(200).send(data.body);
-            // });
+            // res.status(200).send(body['access_token']);
+            spotifyApi.getMet().then((data) => {
+                res.status(200).send(data.body);
+            });
         }
     });
 });
