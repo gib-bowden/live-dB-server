@@ -50,7 +50,8 @@ var stateKey = 'spotify_auth_state';
     res.cookie(stateKey, state);
   
     // your application requests authorization
-    res.json(querystring.stringify({
+    res.redirect('https://accounts.spotify.com/authorize?' +
+      querystring.stringify({
         response_type: 'code',
         client_id: clientId,
         scope: scopes,
@@ -84,10 +85,7 @@ app.get('/redirecturi', (req, res) => {
         else {
             spotifyApi.setAccessToken(body['access_token']);
             spotifyApi.setRefreshToken(body['refresh_token']);
-            // res.status(200).send(body['access_token']);
-            spotifyApi.getMet().then((data) => {
-                res.status(200).send(data.body);
-            });
+            res.status(200).send(body['access_token']);
         }
     });
 });
@@ -95,7 +93,6 @@ app.get('/redirecturi', (req, res) => {
 app.get('/userPlaylist', (req, res) => {
     spotifyApi.getMe()
     .then(function(data) {
-        console.log(data); 
       spotifyApi.getUserPlaylists(data.body.id)
       .then(function(data) {
         res.json(data.body.items);
