@@ -61,7 +61,7 @@ var stateKey = 'spotify_auth_state';
       
   });
 
-app.get('/redirecturi', (req, res) => {
+app.redirect('/redirecturi', (req, res) => {
     const code = req.query.code;
     const state = req.query.state;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
