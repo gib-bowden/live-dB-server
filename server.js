@@ -59,14 +59,14 @@ var stateKey = 'spotify_auth_state';
         state: state
       }))
       
-      .then(function(data){
-        //res.send(data);
-        console.log("Hello"); 
-        res.send('IT WORKED');
-      })
-      .catch(function(err){
-        res.status(400).send(err);
-      });
+    //   .then(function(data){
+    //     //res.send(data);
+    //     console.log("Hello"); 
+    //     res.send('IT WORKED');
+    //   })
+    //   .catch(function(err){
+    //     res.status(400).send(err);
+    //   });
   });
 
 app.get('/redirecturi', (req, res) => {
