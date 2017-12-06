@@ -50,8 +50,7 @@ var stateKey = 'spotify_auth_state';
     res.cookie(stateKey, state);
   
     // your application requests authorization
-    res.redirect('https://accounts.spotify.com/authorize?' +
-      querystring.stringify({
+    res.json(querystring.stringify({
         response_type: 'code',
         client_id: clientId,
         scope: scopes,
@@ -96,6 +95,7 @@ app.get('/redirecturi', (req, res) => {
 app.get('/userPlaylist', (req, res) => {
     spotifyApi.getMe()
     .then(function(data) {
+        console.log(data); 
       spotifyApi.getUserPlaylists(data.body.id)
       .then(function(data) {
         res.json(data.body.items);
