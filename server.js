@@ -50,7 +50,7 @@ var stateKey = 'spotify_auth_state';
     res.cookie(stateKey, state);
   
     // your application requests authorization
-    res.get('https://accounts.spotify.com/authorize?' +
+    res.json(
       querystring.stringify({
         response_type: 'code',
         client_id: clientId,
@@ -59,9 +59,9 @@ var stateKey = 'spotify_auth_state';
         state: state
       }))
       
-      .then(function(data){
-        res.send(data);
-      });
+    //   .then(function(data){
+    //     res.send(data);
+    //   });
   });
 
 app.get('/redirecturi', (req, res) => {
