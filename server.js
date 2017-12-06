@@ -50,8 +50,7 @@ var stateKey = 'spotify_auth_state';
     res.cookie(stateKey, state);
   
     // your application requests authorization
-    res.redirect('https://accounts.spotify.com/authorize?' +
-      querystring.stringify({
+    res.json(querystring.stringify({
         response_type: 'code',
         client_id: clientId,
         scope: scopes,
