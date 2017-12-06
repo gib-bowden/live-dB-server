@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 
 const secret = process.env.secret;
 const clientId = process.env.clientId;
-const redirectUri = `http://localhost:8080/#!/home/` //`https://mighty-shelf-28254.herokuapp.com/redirecturi`;
+const redirectUri = `https://mighty-shelf-28254.herokuapp.com/redirecturi`; //`http://localhost:8080/#!/home/` 
 const scopes = ['user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-modify user-follow-read user-library-read user-library-modify user-top-read user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played'];
 let state;
 
@@ -86,8 +86,10 @@ app.get('/redirecturi', (req, res) => {
         else {
             spotifyApi.setAccessToken(body['access_token']);
             spotifyApi.setRefreshToken(body['refresh_token']);
-            res.status(200).send(body['access_token']);
+            //res.status(200).send(body['access_token']);
         }
+    }).then(() => {
+        res.redirect('https://localhost:8080/#!/login');
     });
 });
 
