@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 
 const secret = process.env.secret;
 const clientId = process.env.clientId;
-const redirectUri = `http://localhost:8080/#!/success`;
+const redirectUri = `http://localhost:8080/success`;
 const scopes = ['user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-modify user-follow-read user-library-read user-library-modify user-top-read user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played'];
 let state;
 
