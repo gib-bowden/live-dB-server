@@ -110,7 +110,6 @@ app.get('/redirecturi', (req, res) => {
         } else {
             spotifyApi.setAccessToken(body['access_token']);
             spotifyApi.setRefreshToken(body['refresh_token']);
-            window.alert(spotifyApi.getAccessToken());
 
             spotifyApi.getMe()
                 .then((data) => {
