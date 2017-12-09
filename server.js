@@ -133,13 +133,19 @@ app.get('/redirecturi', (req, res) => {
 app.get('/userPlaylist', (req, res) => {
     spotifyApi.getUserPlaylists(req.user)
         .then(function (data) {
-            res.json(data);
+            res.json(data.body.items);
         }, function (err) {
             res.status(400).send(err);
         });
 });
 
-
+app.get('/recentlyPlayed', (req, res) => {
+    spotifyApi.getMyRecentlyPlayedTracks().then((data) => {
+        res.json(data);
+    }, (err) => {
+        res.status(400).send(err);
+    });
+});
 
 
 
