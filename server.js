@@ -139,14 +139,14 @@ app.get('/userPlaylist', (req, res) => {
         });
 });
 
-app.get('/recentlyPlayed', (req, res) => {
-    spotifyApi.getMyRecentlyPlayedTracks().then((data) => {
-        res.json(data);
-    }, (err) => {
-        res.status(400).send(err);
-    });
+app.get('/userPlaylist', (req, res) => {
+    spotifyApi.getMyRecentlyPlayedTracks()
+        .then(function (data) {
+            res.json(data);
+        }, function (err) {
+            res.status(400).send(err);
+        });
 });
-
 
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
