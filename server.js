@@ -140,7 +140,7 @@ app.get('/userPlaylist', (req, res) => {
 });
 
 app.get('/recentlyPlayed', (req, res) => {
-    spotifyApi.getMyRecentlyPlayedTracks()
+    spotifyApi.getMyRecentlyPlayedTracks(req.user)
         .then(function (data) {
             res.json(data);
         }, function (err) {
