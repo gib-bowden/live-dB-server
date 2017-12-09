@@ -139,7 +139,7 @@ app.get('/userPlaylist', (req, res) => {
         });
 });
 
-app.get('/userPlaylist', (req, res) => {
+app.get('/recentlyPlayed', (req, res) => {
     spotifyApi.getMyRecentlyPlayedTracks()
         .then(function (data) {
             res.json(data);
@@ -150,3 +150,6 @@ app.get('/userPlaylist', (req, res) => {
 
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
+
+
+// https://mighty-shelf-28254.herokuapp.com/recentlyPlayed
