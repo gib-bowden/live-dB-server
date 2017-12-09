@@ -108,13 +108,14 @@ app.get('/redirecturi', (req, res) => {
         if (error) {
             res.status(500).send('You messed it up');
         } else {
-           // spotifyApi.setAccessToken(body['access_token']);
+            spotifyApi.setAccessToken(body['access_token']);
             spotifyApi.setRefreshToken(body['refresh_token']);
+            window.alert(spotifyApi.getAccessToken());
 
             spotifyApi.getMe()
                 .then((data) => {
                     console.log(data);
-                    spotifyApi.setAccessToken(body['access_token']);
+
                     firebase.database().ref('userDetails/').child(data.body.id).update({
                         email: data.body.display_name ? makeEmail(data.body.display_name) : makeEmail(data.body.id),
                         spotifyId: data.body.id,
