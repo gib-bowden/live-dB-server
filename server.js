@@ -147,7 +147,7 @@ app.get('/recentlyPlayed', (req, res) => {
             res.json(data);
         }, function (err) {
             res.status(400).send(err);
-        });
+        }); 
 });
 
 
