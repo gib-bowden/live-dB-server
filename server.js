@@ -27,7 +27,7 @@ var SpotifyWebApi = require('spotify-web-api-node');
 const secret = process.env.secret;
 const clientId = process.env.clientId;
 const redirectUri = `https://mighty-shelf-28254.herokuapp.com/redirecturi`;
-const scopes = ['user-read-private', 'user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-read-recently-played'];
+const scopes = ['user-read-private', 'user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-read-recently-played' , 'user-library-read'];
 const stateKey = 'spotify_auth_state';
 const spotifyApi = new SpotifyWebApi({
     redirectUri: redirectUri,
