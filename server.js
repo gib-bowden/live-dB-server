@@ -4,7 +4,7 @@
 
 const express = require('express');
 const app = express()
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8888;
 
 const request = require('request');
 var querystring = require('querystring');
@@ -17,16 +17,16 @@ const firebase = require('firebase');
 const config = {
     apiKey: process.env.firebaseapikey,
     authDomain: process.env.firebaseauthdomain,
-    databaseURL: process.env.firebasedatabaseurl,
+    databaseURL: process.env.firebasedatabaseurl
 };
 firebase.initializeApp(config);
 
 
 // ***** SPOTIFY API ***** //
 var SpotifyWebApi = require('spotify-web-api-node');
-const secret = process.env.secret;
-const clientId = process.env.clientId;
-const redirectUri = `https://mighty-shelf-28254.herokuapp.com/redirecturi`;
+const secret = process.env.secret
+const clientId = process.env.clientId
+const redirectUri = 'https://mighty-shelf-28254.herokuapp.com/redirecturi';
 const scopes = ['user-read-private', 'user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-read-recently-played' , 'user-library-read'];
 const stateKey = 'spotify_auth_state';
 const spotifyApi = new SpotifyWebApi({
@@ -114,7 +114,7 @@ app.get('/redirecturi', (req, res) => {
             spotifyApi.getMe()
                 .then((data) => {
                     console.log(data);
-
+                    console.log("apiToken from GetMe", spotifyApi.getAccessToken());
                     firebase.database().ref('userDetails/').child(data.body.id).update({
                         email: data.body.display_name ? makeEmail(data.body.display_name) : makeEmail(data.body.id),
                         spotifyId: data.body.id,
@@ -132,6 +132,7 @@ app.get('/redirecturi', (req, res) => {
 
 
 app.get('/userPlaylist', (req, res) => {
+    console.log("apiToken from userPlaylist", spotifyApi.getAccessToken());
     spotifyApi.getUserPlaylists(req.user)
         .then(function (data) {
             res.json(data.body.items);
@@ -141,6 +142,7 @@ app.get('/userPlaylist', (req, res) => {
 });
 
 app.get('/recentlyPlayed', (req, res) => {
+    console.log("apiToken from recentlyPlayed", spotifyApi.getAccessToken());
     spotifyApi.getMyRecentlyPlayedTracks(req.user)
         .then(function (data) {
             res.json(data);
@@ -152,5 +154,3 @@ app.get('/recentlyPlayed', (req, res) => {
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
 
-
-// https://mighty-shelf-28254.herokuapp.com/recentlyPlayed
