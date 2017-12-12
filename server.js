@@ -166,9 +166,8 @@ app.get('/playlists', (req, res) => {
 }); 
 
 app.get('/playlistTracks', (req, res) => {
-    console.log("apiToken from recentlyPlayed", spotifyApi.getAccessToken());
     request({
-        url: req.playlistUrl,
+        url: `'${req.playlistUrl}'`,
         method: 'get',
         headers: {
             "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
