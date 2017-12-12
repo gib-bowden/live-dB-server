@@ -148,6 +148,9 @@ app.get('/recentlyPlayed', (req, res) => {
         method: 'get',
         headers: {
             "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
+        },
+        options: {
+            "limit": 50
         }
     }, function (error, response, body) {
         if (error) {
