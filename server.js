@@ -167,7 +167,7 @@ app.get('/playlists', (req, res) => {
 
 app.get('/playlistTracks', (req, res) => {
     request({
-        url: `https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWSMyxanxz54I/tracks`,
+        url: decodeURIComponent(req.playlistUrl),
         method: 'get',
         headers: {
             "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
