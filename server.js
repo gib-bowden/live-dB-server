@@ -143,13 +143,24 @@ app.get('/userPlaylist', (req, res) => {
 
 app.get('/recentlyPlayed', (req, res) => {
     console.log("apiToken from recentlyPlayed", spotifyApi.getAccessToken());
-    spotifyApi.getMyRecentlyPlayedTracks(req.user)
+    getRecentlyPlayed(req.user)
         .then(function (data) {
             res.json(data);
         }, function (err) {
             res.status(400).send(err);
         }); 
 });
+
+
+const getRecentlyPlayed = (user) => {
+    return request.get('https://api.spotify.com/v1/me/player/recently-played', {
+        'auth': {
+            'bearer': spotifyApi.getAccessToken()
+        }
+    });
+};
+
+
 
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
