@@ -153,7 +153,24 @@ app.get('/recentlyPlayed', (req, res) => {
         if (error) {
             res.status(500).send(error); 
         } else {
-            res.send(body); 
+            res.send(body.data.items); 
+        }
+    });
+});
+
+app.get('/playlists', (req, res) => {
+    console.log("apiToken from recentlyPlayed", spotifyApi.getAccessToken());
+    request({
+        url: 'https://api.spotify.com/v1/me/player/playlists?limit=50',
+        method: 'get',
+        headers: {
+            "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
+        },
+    }, function (error, response, body) {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            res.send(body.data.items); 
         }
     });
 });
