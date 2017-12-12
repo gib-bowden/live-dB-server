@@ -165,6 +165,23 @@ app.get('/playlists', (req, res) => {
     });
 }); 
 
+app.get('/playlistTracks', (req, res) => {
+    console.log("apiToken from recentlyPlayed", spotifyApi.getAccessToken());
+    request({
+        url: req.playlistUrl,
+        method: 'get',
+        headers: {
+            "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
+        },
+    }, function (error, response, body) {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            res.send(body); 
+        }
+    });
+}); 
+
 
 
 
