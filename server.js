@@ -153,9 +153,11 @@ app.get('/recentlyPlayed', (req, res) => {
 
 
 const getRecentlyPlayed = (user) => {
-    return request.get('https://api.spotify.com/v1/me/player/recently-played', {
-        'auth': {
-            'bearer': spotifyApi.getAccessToken()
+    return request({
+        url: 'https://api.spotify.com/v1/me/player/recently-played',
+        method: 'get',
+        headers: {
+            "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
         }
     });
 };
