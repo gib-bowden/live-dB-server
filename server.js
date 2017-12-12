@@ -166,7 +166,7 @@ app.get('/playlists', (req, res) => {
 }); 
 
 app.get('/playlistTracks', (req, res) => {
-    console.log("req.playlist", req.playlist)
+    console.log("req for /playlistTracks", req)
     request({
         url: `${decodeURIComponent(req.playlistUrl)}`,
         method: 'get',
