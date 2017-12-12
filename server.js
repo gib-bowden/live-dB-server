@@ -143,7 +143,7 @@ app.get('/recentlyPlayed', (req, res) => {
         if (error) {
             res.status(500).send(error); 
         } else {
-            res.send(body.data.items); 
+            res.send(body); 
         }
     });
 });
@@ -160,7 +160,7 @@ app.get('/playlists', (req, res) => {
         if (error) {
             res.status(500).send(error); 
         } else {
-            res.send(body.data.items); 
+            res.send(body); 
         }
     });
 }); 
