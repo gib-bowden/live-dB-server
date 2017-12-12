@@ -144,14 +144,11 @@ app.get('/userPlaylist', (req, res) => {
 app.get('/recentlyPlayed', (req, res) => {
     console.log("apiToken from recentlyPlayed", spotifyApi.getAccessToken());
     request({
-        url: 'https://api.spotify.com/v1/me/player/recently-played/',
+        url: 'https://api.spotify.com/v1/me/player/recently-played?limit=50',
         method: 'get',
         headers: {
             "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
         },
-        data: {
-            "limit": 50
-        }
     }, function (error, response, body) {
         if (error) {
             res.status(500).send(error); 
