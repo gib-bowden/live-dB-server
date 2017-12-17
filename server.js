@@ -151,7 +151,6 @@ app.get('/recentlyPlayed', (req, res) => {
 app.get('/playlists', (req, res) => {
     console.log("apiToken from recentlyPlayed", spotifyApi.getAccessToken());
     request({
-        //url: `https://api.spotify.com/v1/users/${req.user}/playlists?limit=50`,
         url: `https://api.spotify.com/v1/me/playlists?limit=50`,
         method: 'get',
         headers: {
@@ -183,6 +182,26 @@ app.get('/playlistTracks', (req, res) => {
         }
     });
 }); 
+
+app.get('/artist', (req, res) => {
+    console.log("req for /artist", req.query.artist)
+    request({
+        url: `${decodeURIComponent(req.query.artist)}`,
+        method: 'get',
+        headers: {
+            "Authorization": `Bearer ${spotifyApi.getAccessToken()}`
+        },
+    }, function (error, response, body) {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            res.send(body); 
+        }
+    });
+}); 
+
+
+
 
 
 
